@@ -15,7 +15,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @EnableWebMvc
 @Configuration
-@ComponentScan(basePackages = { "ro.netrom.summercamp.summercamp2017.controller" })
+@ComponentScan(basePackages = { "ro.netrom.summercamp.summercamp2017.controller"})
 public class WebConfig extends WebMvcConfigurerAdapter {
  
     @Override
@@ -34,4 +34,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         converters.add(new MarshallingHttpMessageConverter());
         converters.add(new ResourceHttpMessageConverter());
     }
+    
+ 
 }
