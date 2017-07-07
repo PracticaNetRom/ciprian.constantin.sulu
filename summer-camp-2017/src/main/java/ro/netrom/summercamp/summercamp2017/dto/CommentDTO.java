@@ -22,6 +22,18 @@ public class CommentDTO {
 
 	}
 
+	public CommentDTO(Integer id, String content, String name, String parent, Integer announcementId, Date createDate,
+			List<CommentDTO> children) {
+		super();
+		this.id = id;
+		this.content = content;
+		this.name = name;
+		this.parent = parent;
+		this.announcementId = announcementId;
+		this.createDate = createDate;
+		this.children = children;
+	}
+
 	public Integer getId() {
 		return id;
 	}

@@ -107,7 +107,7 @@
 
 				<!-- Blog Comments -->
 				 
-				<form:form action="/comments/add.do?aId=1&pId=13" method="POST"
+				<form:form action="/comments/add.do?aId=${announcement.id}" method="POST"
 					modelAttribute="newComment">
 					<table>
 						<tr>

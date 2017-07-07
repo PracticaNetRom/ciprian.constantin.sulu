@@ -45,23 +45,3 @@
 
 
 
-<!--  
-<div class="media" style="padding-left: 30px; padding-bottom: 5px">
-	<a class="pull-left" href="#"> <img class="media-object"
-		src="http://placehold.it/64x64" alt="">
-	</a>
-	<div class="media-body" style="padding-left: 30px; padding-bottom: 5px">
-		<h4 class="media-heading">
-			<c:out value="${node.name}" />
-			<small><c:out value="${node.createDate}" /></small>
-		</h4>
-		<c:out value="${node.content}" />
-
-		<c:forEach var="X" items="${node.children}">
-			<c:set var="node" value="${X}" scope="request" />
-			<jsp:include page="comment1.jsp" />
-		</c:forEach>
-	</div>
-</div>
--->
-
