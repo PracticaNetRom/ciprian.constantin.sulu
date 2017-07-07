@@ -10,8 +10,11 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.http.converter.xml.MarshallingHttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.AsyncSupportConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+
 
 @EnableWebMvc
 @Configuration
@@ -34,6 +37,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         converters.add(new MarshallingHttpMessageConverter());
         converters.add(new ResourceHttpMessageConverter());
     }
+    
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    	registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+    	}
+    	
     
  
 }

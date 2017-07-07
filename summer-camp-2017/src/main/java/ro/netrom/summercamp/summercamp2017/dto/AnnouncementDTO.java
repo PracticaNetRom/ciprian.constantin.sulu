@@ -1,5 +1,6 @@
 package ro.netrom.summercamp.summercamp2017.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
 
@@ -23,7 +24,8 @@ public class AnnouncementDTO {
 	private String categoryDescription;
 
 	public AnnouncementDTO() {
-
+		
+		
 	}
 
 	public AnnouncementDTO(Integer id, String title, String content, String location, String confirmationCode, Date createDate,

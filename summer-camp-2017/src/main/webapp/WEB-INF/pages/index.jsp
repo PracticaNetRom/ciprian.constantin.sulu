@@ -5,51 +5,188 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link rel="stylesheet"
-	href="//fonts.googleapis.com/css?family=Raleway:400,300,600" />
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css" />
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Announcements</title>
+ <title>Announcements Home</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="<c:url value='/resources/css/bootstrap.min.css' />" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="<c:url value='/resources/css/blog-home.css' />" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
+
 <body>
 
-	<c:forEach var="i" items="${announcement}">
-       Name <c:out value="${i.ownerEmail}" />
-		<p>
-	</c:forEach>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/announcement">Home</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Services</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
 
-<!--
+    <!-- Page Content -->
+    <div class="container">
 
-	<jsp:useBean id="announcement"
-		class="ro.netrom.summercamp.summercamp2017.dto.AnnouncementDTO">
-		<jsp:setProperty name="announcement" property="ownerFirstName"
-			value="${announcement.ownerFirstName}" />
-		<jsp:setProperty name="announcement" property="ownerLastName"
-			value="Ali" />
-		<jsp:setProperty name="announcement" property="ownerPhone" value="10" />
-	</jsp:useBean>
+        <div class="row">
 
-	<p>
-		Owner First Name:
-		<jsp:getProperty name="announcement" property="ownerFirstName" />
-	</p>
+            <!-- Blog Entries Column -->
+            <div class="col-md-8">
 
-	<p>
-		Owner Last Name:
-		<jsp:getProperty name="announcement" property="ownerLastName" />
-	</p>
+                <h1 class="page-header">
+                    All announcemets
+                    <small>Secondary Text</small>
+                </h1>
+				
+				<c:forEach var="announcement" items="${announcements}">
+				
+                <!-- First Blog Post -->
+                <h2>
+                    <a href="#"><c:out value="${announcement.title}" /></a>
+                </h2>
+                <p class="lead">
+                    by <a href="index.php">${announcement.ownerFirstName}&nbsp;${announcement.ownerLastName}</a>
+                </p>
+                <p><span class="glyphicon glyphicon-time"></span> <c:out value="${announcement.createDate}" /></p>
+                
+                <p> Category: <c:out value="${announcement.categoryName}" /> </p>
+                <a class="btn btn-primary" href="/announcement?id=${announcement.id}">Read More<span class="glyphicon glyphicon-chevron-right"></span></a>
 
-	<p>
-		Owner Email:
-		<jsp:getProperty name="announcement" property="ownerPhone" />
-	</p>
-	
-	<a href="usersList">json users list</a>
-	-->
-	
+                <hr>
+				</c:forEach>
+                
+
+                <!-- Pager -->
+                <ul class="pager">
+                    <li class="previous">
+                        <a href="#">&larr; Older</a>
+                    </li>
+                    <li class="next">
+                        <a href="#">Newer &rarr;</a>
+                    </li>
+                </ul>
+
+            </div>
+
+            <!-- Blog Sidebar Widgets Column -->
+            <div class="col-md-4">
+
+                <!-- Blog Search Well -->
+                <div class="well">
+                    <h4>Blog Search</h4>
+                    <div class="input-group">
+                        <input type="text" class="form-control">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">
+                                <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                        </span>
+                    </div>
+                    <!-- /.input-group -->
+                </div>
+
+                <!-- Blog Categories Well -->
+                <div class="well">
+                    <h4>Blog Categories</h4>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <ul class="list-unstyled">
+                                <li><a href="#">Category Name</a>
+                                </li>
+                                <li><a href="#">Category Name</a>
+                                </li>
+                                <li><a href="#">Category Name</a>
+                                </li>
+                                <li><a href="#">Category Name</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /.col-lg-6 -->
+                        <div class="col-lg-6">
+                            <ul class="list-unstyled">
+                                <li><a href="#">Category Name</a>
+                                </li>
+                                <li><a href="#">Category Name</a>
+                                </li>
+                                <li><a href="#">Category Name</a>
+                                </li>
+                                <li><a href="#">Category Name</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /.col-lg-6 -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+
+                <!-- Side Widget Well -->
+                <div class="well">
+                    <h4>Side Widget Well</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
 </body>
+
+</html>
 
 </html>
