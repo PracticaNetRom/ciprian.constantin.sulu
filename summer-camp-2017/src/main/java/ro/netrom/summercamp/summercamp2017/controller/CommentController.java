@@ -55,6 +55,6 @@ public class CommentController {
 				"http://194.102.98.245:17281/comments/save.do?announcementId=" + aId +
 				(pId != null ? "&parentId=" + pId : ""),
 				comment, SaveCommentDTO.class);
-		return "redirect:/announcements";
+		return "redirect:/comments?id="+aId;
 	}
 }

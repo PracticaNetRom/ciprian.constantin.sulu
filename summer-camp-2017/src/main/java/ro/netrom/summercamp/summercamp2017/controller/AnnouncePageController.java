@@ -39,17 +39,15 @@ public class AnnouncePageController {
 	        service.create(announcement);
 	        return "redirect:/announcements";
 	    }
-	    
-//	    @RequestMapping( method = RequestMethod.GET)
-//		public String findCom( Model model) {
-//			model.addAttribute("newComment", new CommentDTO());
-//			return "announcementPage";
-//		}
-//	    @RequestMapping(params = {"Id"}, method = RequestMethod.GET)
-//	    public String findComment(@RequestParam("Id") Integer id, Model model) {
-//	        model.addAttribute("comments", Arrays.stream(restTemplate.getForObject("http://194.102.98.245:17281/comments/list.do?announcementId="+id, CommentDTO[].class)).collect(Collectors.toList()));
-//	        model.addAttribute("newComment", new CommentDTO());
-//	        return "announcementPage";
-//	    }
+	    @RequestMapping(value = "/close.do", method = RequestMethod.POST)
+		public String close(@RequestParam(name="aId",required = false) Integer aId, 
+				@RequestParam(name="oEmail",required = false) String oEnail,
+				@Valid @ModelAttribute("cAnnouncement") AnnouncementDTO announcement) {
+			restTemplate.postForObject(
+					"http://194.102.98.245:17281/announcement/close.do?id=" + aId +
+					(oEnail != null ? "&ownerEmail=" + oEnail : ""),
+					announcement, AnnouncementDTO.class);
+			return "redirect:/announcements";
+		}
 	   
 }

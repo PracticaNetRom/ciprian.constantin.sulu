@@ -12,6 +12,7 @@ public class AnnouncementDTO {
 	private Integer id;
 	private String title;
 	private String content;
+	private Boolean status;
 	private String location;
 	private String confirmationCode;
 	private Date createDate;
@@ -30,7 +31,7 @@ public class AnnouncementDTO {
 
 	public AnnouncementDTO(Integer id, String title, String content, String location, String confirmationCode, Date createDate,
 			Date expireDate, String ownerEmail, String ownerFirstName, String ownerLastName, String ownerPhone,
-			String categoryName, String categoryDescription) {
+			String categoryName, String categoryDescription, Boolean status) {
 
 		this.id = id;
 		this.title = title;
@@ -45,10 +46,19 @@ public class AnnouncementDTO {
 		this.ownerPhone = ownerPhone;
 		this.categoryName = categoryName;
 		this.categoryDescription = categoryDescription;
+		this.status=status;
 	}
 
 	public String getTitle() {
 		return title;
+	}
+	
+	public Boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(Boolean status) {
+		this.status = status;
 	}
 
 	public void setTitle(String title) {
