@@ -32,12 +32,8 @@ public class AnnouncementController {
 
 	@Autowired
     private AnnouncementServiceImpl service;
-	@Autowired
-	private ObjectMapper mapper;
-	@Autowired
-	private RestTemplate restTemplate;
-
-    @RequestMapping( method = RequestMethod.GET)
+	
+	@RequestMapping( method = RequestMethod.GET)
     public String findAll(Model model) {
         model.addAttribute("announcements", service.findAll());
         model.addAttribute("category", service.findCategory());
@@ -47,11 +43,8 @@ public class AnnouncementController {
     }
     
     @RequestMapping(params = {"categ"}, method = RequestMethod.GET)
-	public String findCateg(@RequestParam(name = "categ") String categ,Model model) {
-        model.addAttribute("announcements", Arrays
-				.stream(restTemplate.getForObject("http://194.102.98.245:17281/announcement/list.do",
-						AnnouncementDTO[].class))
-				.filter(x -> categ.equals(x.getCategoryName())).collect(Collectors.toList()));
+	public String findCateg(@RequestParam(name = "categ") String categ, Model model) {
+        model.addAttribute("announcements", service.findByCategoryName(categ));
         model.addAttribute("category", service.findCategory());
         return "index";
     }

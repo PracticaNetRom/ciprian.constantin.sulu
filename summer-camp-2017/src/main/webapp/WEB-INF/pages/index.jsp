@@ -96,10 +96,11 @@
 							href="/announcement?id=${announcement.id}">Read More<span
 							class="glyphicon glyphicon-chevron-right"></span></a>
 
-						<form action="/announcement/close.do?aId=${announcement.id}&oEmail=${announcement.ownerEmail}"
-							method="POST">
+						<form action="/announcement/close.do"
+							method="get">
 							<c:set var="var" value="${var}"/>
-							<input type="text" name="ownerEmail" value="${announcement.ownerEmail}"  placeholder="Email address"
+							<input type="hidden" name="aId" value="${announcement.id}" /> 
+							<input type="text" name="oEmail" value=""  placeholder="Email address"
 								required="required" class="form" /> 
 							<input type="submit"
 								class="btn btn-primary" value="Delete">

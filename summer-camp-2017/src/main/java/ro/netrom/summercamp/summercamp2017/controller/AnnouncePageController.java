@@ -39,13 +39,13 @@ public class AnnouncePageController {
 	        service.create(announcement);
 	        return "redirect:/announcements";
 	    }
-	    @RequestMapping(value = "/close.do", method = RequestMethod.POST)
+	    @RequestMapping(value = "/close.do", method = RequestMethod.GET)
 		public String close(@RequestParam(name="aId",required = false) Integer aId, 
-				@RequestParam(name="oEmail",required = false) String oEnail,
+				@RequestParam(name="oEmail",required = false) String ownerEmail,
 				@Valid @ModelAttribute("cAnnouncement") AnnouncementDTO announcement) {
 			restTemplate.postForObject(
 					"http://194.102.98.245:17281/announcement/close.do?id=" + aId +
-					(oEnail != null ? "&ownerEmail=" + oEnail : ""),
+					(ownerEmail != null ? "&ownerEmail=" + ownerEmail : ""),
 					announcement, AnnouncementDTO.class);
 			return "redirect:/announcements";
 		}

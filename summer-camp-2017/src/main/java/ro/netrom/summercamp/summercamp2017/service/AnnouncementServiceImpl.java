@@ -24,6 +24,12 @@ public class AnnouncementServiceImpl {
 				restTemplate.getForObject("http://194.102.98.245:17281/announcement/list.do", AnnouncementDTO[].class))
 				.collect(Collectors.toList());
 	}
+	public List<AnnouncementDTO> findByCategoryName(String categoryName) {
+		return Arrays.stream(
+				restTemplate.getForObject("http://194.102.98.245:17281/announcement/list.do", AnnouncementDTO[].class))
+				.filter(x -> categoryName.equals(x.getCategoryName()))
+				.collect(Collectors.toList());
+	}
 
 	public AnnouncementDTO create(AnnouncementDTO announcement) {
 		return restTemplate.postForObject("http://194.102.98.245:17281/announcement/save.do", announcement,
