@@ -13,41 +13,40 @@ import org.springframework.web.client.RestTemplate;
 
 import ro.netrom.summercamp.summercamp2017.dto.AnnouncementDTO;
 import ro.netrom.summercamp.summercamp2017.dto.SaveCommentDTO;
-import ro.netrom.summercamp.summercamp2017.service.AnnoucneServiceImpl;
+import ro.netrom.summercamp.summercamp2017.service.AnnouncementService;
 
 @Controller
 @RequestMapping("/announcement")
 public class AnnouncePageController {
 
 	@Autowired
-    private AnnoucneServiceImpl service;
+	private AnnouncementService service;
 	@Autowired
 	private RestTemplate restTemplate;
-	
-	   @RequestMapping(params = {"id"}, method = RequestMethod.GET)
-	    public String findAllById(@RequestParam("id") Integer id, Model model) {
-		   model.addAttribute("announcement", restTemplate.getForObject("http://summercamp.api.stage03.netromsoftware.ro/api/announcement/getById.do?announcementId="+id, AnnouncementDTO.class));
-	        model.addAttribute("newAnnouncement", new AnnouncementDTO());
-	        model.addAttribute("newComment", new SaveCommentDTO());
-	        return "announcementPage";
-	    }
 
+	@RequestMapping(params = { "id" }, method = RequestMethod.GET)
+	public String findAllById(@RequestParam("id") Integer id, Model model) {
+		model.addAttribute("announcement", restTemplate.getForObject(
+				"http://summercamp.api.stage03.netromsoftware.ro/api/announcement/getById.do?announcementId=" + id,
+				AnnouncementDTO.class));
+		model.addAttribute("newAnnouncement", new AnnouncementDTO());
+		model.addAttribute("newComment", new SaveCommentDTO());
+		return "announcementPage";
+	}
 
+	@RequestMapping(value = "/add.do", method = RequestMethod.POST)
+	public String create(@Valid @ModelAttribute("newAnnouncement") AnnouncementDTO announcement) {
+		service.create(announcement);
+		return "redirect:/announcements";
+	}
 
-	    @RequestMapping(value = "/add.do", method = RequestMethod.POST)
-	    public String create(@Valid @ModelAttribute("newAnnouncement") AnnouncementDTO announcement) {
-	        service.create(announcement);
-	        return "redirect:/announcements";
-	    }
-	    @RequestMapping(value = "/close.do", method = RequestMethod.GET)
-		public String close(@RequestParam(name="aId",required = false) Integer aId, 
-				@RequestParam(name="oEmail",required = false) String ownerEmail,
-				@Valid @ModelAttribute("cAnnouncement") AnnouncementDTO announcement) {
-			restTemplate.postForObject(
-					"http://194.102.98.245:17281/announcement/close.do?id=" + aId +
-					(ownerEmail != null ? "&ownerEmail=" + ownerEmail : ""),
-					announcement, AnnouncementDTO.class);
-			return "redirect:/announcements";
-		}
-	   
+	@RequestMapping(value = "/close.do", method = RequestMethod.GET)
+	public String close(@RequestParam(name = "aId", required = false) Integer announcementId,
+			@RequestParam(name = "oEmail", required = false) String ownerEmail,
+			@Valid @ModelAttribute("cAnnouncement") AnnouncementDTO announcement) {
+		restTemplate.postForObject("http://194.102.98.245:17281/announcement/close.do?id=" + announcementId
+				+ (ownerEmail != null ? "&ownerEmail=" + ownerEmail : ""), announcement, AnnouncementDTO.class);
+		return "redirect:/announcements";
+	}
+
 }

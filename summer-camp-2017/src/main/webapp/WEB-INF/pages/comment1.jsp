@@ -22,24 +22,13 @@
 		src="http://placehold.it/64x64" alt="">
 	</a>
 	<div style="padding-left: 70px; padding-bottom: 5px">
-		<p>
-			Name:
+
+		<h4 class="media-heading">
 			<c:out value="${node.name}" />
-			<br />
-		</p>
-		<p>
-			Content
-			<c:out value="${node.content}" />
-			<br />
-		</p>
-		<p>
-			Create Date:
-			<c:out value="${node.createDate}" />
-		</p>
-		<p>
-			Id:
-			<c:out value="${node.id}" />
-		</p>
+			<small><c:out value="${node.createDate}" /></small>
+		</h4>
+		<c:out value="${node.content}" />
+		<br/>
 
 		<!--  <input type="button" name="answer" value="Show Div"
 			onclick="showDiv()" /> -->
@@ -61,7 +50,7 @@
 					</tr>
 					<tr>
 						<td colspan="2"><input type="submit" class="btn btn-primary"
-							value="Submit"></td>
+							value="Reply"></td>
 					</tr>
 				</table>
 			</form:form>

@@ -64,7 +64,7 @@
 			<div class="col-md-8">
 
 				<h1 class="page-header">
-					All announcemets <small>Secondary Text</small>
+					All announcemets 
 				</h1>
 
 
@@ -137,7 +137,7 @@
 					<!-- /.input-group -->
 				</div>
 
-				<!-- Blog Categories Well -->
+				<!-- Announcemet Categories Well -->
 				<div class="well">
 					<h4>Announcemet Categories</h4>
 					<div class="row">
@@ -145,7 +145,7 @@
 						<!-- /.col-lg-6 -->
 						<div class="col-lg-6">
 							<ul class="list-unstyled">
-							<c:forEach var="cat" items="${category}">
+							<c:forEach var="cat" items="${categories}">
 								<li><a href="/announcements?categ=${cat.name}"> <c:out value="${cat.name}" /> </a></li>
 								</c:forEach>
 								

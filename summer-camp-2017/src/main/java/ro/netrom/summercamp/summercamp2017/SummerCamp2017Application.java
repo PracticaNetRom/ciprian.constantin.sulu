@@ -6,9 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.client.RestTemplate;
 
-import ro.netrom.summercamp.summercamp2017.service.AnnoucneServiceImpl;
-import ro.netrom.summercamp.summercamp2017.service.AnnouncementServiceImpl;
-import ro.netrom.summercamp.summercamp2017.service.CommentServiceImpl;
+import ro.netrom.summercamp.summercamp2017.service.AnnouncementService;
+import ro.netrom.summercamp.summercamp2017.service.CommentService;
 
 @SpringBootApplication
 @ComponentScan(basePackages = { "ro.netrom.summercamp.summercamp2017.config" })
@@ -26,15 +25,12 @@ public class SummerCamp2017Application {
 	
 	
 	@Bean
-	public AnnouncementServiceImpl announcementServiceImpl() {
-		return new AnnouncementServiceImpl();
+	public AnnouncementService announcementServiceImpl() {
+		return new AnnouncementService();
 	}
 	@Bean
-	public CommentServiceImpl commentServiceImpl() {
-		return new CommentServiceImpl();
+	public CommentService commentServiceImpl() {
+		return new CommentService();
 	}
-	@Bean
-	public AnnoucneServiceImpl annoucneServiceImpl() {
-		return new AnnoucneServiceImpl();
-	}
+	
 }

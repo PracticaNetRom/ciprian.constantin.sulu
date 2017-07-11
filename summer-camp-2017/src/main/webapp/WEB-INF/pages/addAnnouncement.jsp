@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Blog Post - Start Bootstrap Template</title>
+<title> Post - Add a new announcement</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="resources/css/bootstrap.min.css" rel="stylesheet">
@@ -132,12 +132,9 @@
 
 								<form:select path="categoryName"
 									placeholder="Category" required="required" class="form">
-									<option value="Category1">Category1</option>
-									<option value=Category2>Category2</option>
-									<option value="Cars">Cars</option>
-									<option value="Electronics">Electronics</option>
-									<option value="Projects">Projects</option>
-									<option value="testNewValidation">testNewValidation</option>
+									<c:forEach var="cat" items="${categories}">
+									<option value="${cat.name}"><c:out value="${cat.name}" /></option>
+									</c:forEach>
 								</form:select>
 
 							</div>
